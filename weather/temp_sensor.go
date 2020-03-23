@@ -1,6 +1,9 @@
 package weather
 
-import "weather_station/api"
+import (
+	"weather_station/api"
+	"weather_station/component"
+)
 
 func NewTemperatureSensor(st api.StationToolkit) TemperatureSensor {
 	return TemperatureSensor{
@@ -13,7 +16,7 @@ type TemperatureSensor struct {
 	TemperatureSensorImpl api.TemperatureSensorImpl
 	AlarmClock            alarmClock
 	itsLastReading        float32
-	observers             []Observer
+	observers             []component.Observer
 }
 
 func (sensor *TemperatureSensor) Read() {
@@ -30,9 +33,9 @@ func (sensor *TemperatureSensor) check() {
 	}
 }
 
-func (sensor *TemperatureSensor) AddObserver(observer Observer) {
+func (sensor *TemperatureSensor) AddObserver(observer component.Observer) {
 	if sensor.observers == nil {
-		sensor.observers = []Observer{}
+		sensor.observers = []component.Observer{}
 	}
 	sensor.observers = append(sensor.observers, observer)
 }

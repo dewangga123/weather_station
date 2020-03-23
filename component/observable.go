@@ -1,4 +1,4 @@
-package weather
+package component
 
 type Observable interface {
 	AddObserver(observer Observer)

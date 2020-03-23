@@ -1,8 +1,10 @@
 package ui
 
-import "weather_station/weather"
+import (
+	"weather_station/component"
+)
 
-func NewTemperatureUIObserver() weather.Observer {
+func NewTemperatureUIObserver() component.Observer {
 	return TemperatureUIObserver{
 		Screen: monitoringScreen{},
 	}
