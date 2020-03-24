@@ -16,3 +16,9 @@ func (toolkit *nimbus1StationToolkit) MakeTemperature() api.TemperatureSensorImp
 func (toolkit *nimbus1StationToolkit) GetAlarmClock() api.AlarmClockImpl {
 	return &nimbus1AlarmClock{}
 }
+
+func (toolkit *nimbus1StationToolkit) GetPersistent() api.PersistentImpl {
+	return &nimbus1PersistentImpl{
+		DB: make(map[string][]byte),
+	}
+}

@@ -1,19 +1,16 @@
 package ui
 
 import (
+	"fmt"
 	"weather_station/component"
 )
 
 func NewTemperatureUIObserver() component.Observer {
-	return TemperatureUIObserver{
-		Screen: monitoringScreen{},
-	}
+	return TemperatureUIObserver{}
 }
 
-type TemperatureUIObserver struct {
-	Screen monitoringScreen
-}
+type TemperatureUIObserver struct{}
 
 func (observer TemperatureUIObserver) Update(data float32) {
-	observer.Screen.DisplayTemperature(data)
+	fmt.Println("Temperature Value", data)
 }

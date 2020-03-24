@@ -10,6 +10,8 @@ func main() {
 	st := nimbus1.NewNimbus1StationToolkit()
 	weatherStation := weather.NewWeatherStation("Station", st)
 	tempObserver := ui.NewTemperatureUIObserver()
+	tempHiLoObserver := ui.NewTempHiloUIObserver()
 	weatherStation.AddTempObserver(tempObserver)
+	weatherStation.AddHiLoTempObserver(tempHiLoObserver)
 	weatherStation.Read()
 }

@@ -5,27 +5,27 @@ import (
 	"weather_station/component"
 )
 
-func NewTemperatureSensor(st api.StationToolkit) TemperatureSensor {
-	return TemperatureSensor{
+func newTemperatureSensor(st api.StationToolkit) temperatureSensor {
+	return temperatureSensor{
 		TemperatureSensorImpl: st.MakeTemperature(),
 		AlarmClock:            newAlarmClock(st),
 	}
 }
 
-type TemperatureSensor struct {
+type temperatureSensor struct {
 	TemperatureSensorImpl api.TemperatureSensorImpl
 	AlarmClock            alarmClock
 	itsLastReading        float32
 	observers             []component.Observer
 }
 
-func (sensor *TemperatureSensor) Read() {
+func (sensor *temperatureSensor) Read() {
 	sensor.AlarmClock.Wakeup(5, func() {
 		sensor.check()
 	})
 }
 
-func (sensor *TemperatureSensor) check() {
+func (sensor *temperatureSensor) check() {
 	val := sensor.TemperatureSensorImpl.Read()
 	if val != sensor.itsLastReading {
 		sensor.itsLastReading = val
@@ -33,14 +33,14 @@ func (sensor *TemperatureSensor) check() {
 	}
 }
 
-func (sensor *TemperatureSensor) AddObserver(observer component.Observer) {
+func (sensor *temperatureSensor) AddObserver(observer component.Observer) {
 	if sensor.observers == nil {
 		sensor.observers = []component.Observer{}
 	}
 	sensor.observers = append(sensor.observers, observer)
 }
 
-func (sensor *TemperatureSensor) NotifyObserver(data float32) {
+func (sensor *temperatureSensor) NotifyObserver(data float32) {
 	if sensor.observers != nil {
 		for _, observer := range sensor.observers {
 			observer.Update(data)

@@ -13,3 +13,4 @@ func (sensor *nimbus1TemperatureSensor) Read() float32 {
 	r := rand.New(s)
 	return 25 * r.Float32()
 }
+   
