@@ -5,11 +5,11 @@ import (
 	"errors"
 )
 
-type nimbus1PersistentImpl struct {
+type nimbus1PersistentDevice struct {
 	DB map[string][]byte
 }
 
-func (persistent *nimbus1PersistentImpl) Store(name string, data interface{}) error {
+func (persistent *nimbus1PersistentDevice) Store(name string, data interface{}) error {
 	dataBytes, err := json.Marshal(data)
 	if err != nil {
 		return err
@@ -17,7 +17,7 @@ func (persistent *nimbus1PersistentImpl) Store(name string, data interface{}) er
 	persistent.DB[name] = dataBytes
 	return nil
 }
-func (persistent *nimbus1PersistentImpl) Retrive(name string) ([]byte, error) {
+func (persistent *nimbus1PersistentDevice) Retrive(name string) ([]byte, error) {
 	if data, ok := persistent.DB[name]; ok {
 		return data, nil
 	} else {

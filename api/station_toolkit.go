@@ -1,7 +1,7 @@
 package api
 
 type StationToolkit interface {
-	MakeTemperature() TemperatureSensorImpl
-	GetAlarmClock() AlarmClockImpl
-	GetPersistent() PersistentImpl
+	MakeTemperature() TemperatureSensorDevice
+	GetAlarmClock() AlarmClockDevice
+	GetPersistent() PersistentDevice
 }

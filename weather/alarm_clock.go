@@ -12,7 +12,7 @@ type alarmClock struct {
 	interval       int
 	cacheInterval  int
 	listener       func()
-	AlarmClockImpl api.AlarmClockImpl
+	AlarmClockImpl api.AlarmClockDevice
 }
 
 func (alarm *alarmClock) Tic(milliseconds int) {

@@ -1,6 +1,6 @@
 package api
 
-type PersistentImpl interface {
+type PersistentDevice interface {
 	Store(name string, data interface{}) error
 	Retrive(name string) ([]byte, error)
 }

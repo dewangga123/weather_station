@@ -5,19 +5,18 @@ import (
 	"weather_station/api"
 	"weather_station/component"
 	"weather_station/wmsdata"
-	"weather_station/wmsdata_impl"
 )
 
-func newHiloTemperatureSensor(st api.StationToolkit) temperatureHiLo {
+func newHiloTemperatureSensor(st api.StationToolkit, dt wmsdata.DataToolkit) temperatureHiLo {
 	return temperatureHiLo{
 		TemperatureSensorImpl: st.MakeTemperature(),
 		AlarmClock:            newAlarmClock(st),
-		ItsLastReading:        wmsdata_impl.NewHiLoDataImpl(st, "temp", time.Now(), 14.0, time.Now()),
+		ItsLastReading:        dt.GetTempHiLoData(st, "temp", time.Now(), 14.0, time.Now()),
 	}
 }
 
 type temperatureHiLo struct {
-	TemperatureSensorImpl api.TemperatureSensorImpl
+	TemperatureSensorImpl api.TemperatureSensorDevice
 	AlarmClock            alarmClock
 	observers             []component.HiloObserver
 	ItsLastReading        wmsdata.HiLoData

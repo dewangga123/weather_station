@@ -1,5 +1,5 @@
 package api
 
-type AlarmClockImpl interface {
+type AlarmClockDevice interface {
 	Register(alarmListener AlarmListener)
 }

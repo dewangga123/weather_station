@@ -13,7 +13,7 @@ func newTemperatureSensor(st api.StationToolkit) temperatureSensor {
 }
 
 type temperatureSensor struct {
-	TemperatureSensorImpl api.TemperatureSensorImpl
+	TemperatureSensorImpl api.TemperatureSensorDevice
 	AlarmClock            alarmClock
 	itsLastReading        float32
 	observers             []component.Observer
